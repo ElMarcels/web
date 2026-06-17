@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://github.com/ElMarcels/web/blob/main/marcels-sinfondo.png?raw=true">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElMarcels | Home</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts: Instrument Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --accent-purple: #7c3aed;
+            --accent-magenta: #d946ef;
+            --accent-blue: #3b82f6;
+        }
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        #spotlight {
+            fixed: inset 0;
+            pointer-events: none;
+            background: radial-gradient(600px circle at var(--x) var(--y), rgba(124, 58, 237, 0.15), transparent 80%);
+            z-index: 50;
+        }
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-magenta) 50%, var(--accent-blue) 100%);
+            background-size: 200% 200%;
+            animation: gradient-move 3s ease-in-out infinite;
+        }
+        @keyframes gradient-move {
+            0% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .bento-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-card:hover {
+            border-color: var(--accent-magenta);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.3);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--accent-purple), var(--accent-blue));
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="relative">
+    <div id="spotlight" class="fixed inset-0 pointer-events-none"></div>
+
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md">
+        <div class="text-2xl font-black bg-clip-text text-transparent bg-gradient-custom">ElMarcels</div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-4 md:px-10 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            
+            <!-- Welcome Hero -->
+            <div class="md:col-span-3 md:row-span-2 bento-card rounded-3xl p-10 md:p-16 flex flex-col justify-center relative overflow-hidden" data-aos="fade-right">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
+                    <span class="text-transparent bg-clip-text bg-gradient-custom glow-text">ElMarcels</span><br>
+                    <strong>HUB</strong>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-400 font-medium mb-8">
+                    Explore my projects in <strong>GITHUB</strong>
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="../portafolio/index.html" class="bg-gradient-custom px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg shadow-fuchsia-500/20">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Link: Portfolio -->
+            <a href="../portafolio/index.html" class="bento-card rounded-3xl p-8 flex flex-col items-center justify-center text-center group" data-aos="fade-left">
+                <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📂</div>
+                <h3 class="font-bold text-lg">Portfolio</h3>
+                <p class="text-slate-500 text-sm">Look My Tech Stack, My Socials & What I do</p>
+            </a>
+
+            <!-- Quick Link: Socials -->
+            <a href="talk.html" class="bento-card rounded-3xl p-8 flex flex-col items-center justify-center text-center group" data-aos="fade-left" data-aos-delay="100">
+                <div class="text-4xl mb-4 flex gap-2 group-hover:scale-110 transition-transform">
+                    <i class="fab fa-github text-slate-400"></i>
+                </div>
+                <h3 class="font-bold text-lg text-transparent bg-clip-text bg-gradient-custom">Social Networks</h3>
+                <p class="text-slate-500 text-sm">Follow me on my socials</p>
+            </a>
+
+            <!-- Featured Service -->
+            <div class="md:col-span-4 bento-card rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6" data-aos="fade-up">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-code text-blue-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Need a custom development?</h3>
+                        <p class="text-slate-400 text-sm">Specialized in Minecraft, Web, and Discord Servers.</p>
+                    </div>
+                </div>
+                <a href="talk.html" class="bg-white/10 px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-all whitespace-nowrap">
+                    Let's Talk <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 ElMarcels. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1000, once: true });
+
+            new Typed('#typed-main', {
+                strings: ['Web Development', 'Minecraft Dev', 'Discord Expert', 'Full-Stack'],
+                typeSpeed: 50, backSpeed: 30, loop: true
+            });
+
+            const spotlight = document.getElementById('spotlight');
+            window.addEventListener('mousemove', e => {
+                spotlight.style.setProperty('--x', `${e.clientX}px`);
+                spotlight.style.setProperty('--y', `${e.clientY}px`);
+            });
+        });
+    </script>
+</body>
+</html>
