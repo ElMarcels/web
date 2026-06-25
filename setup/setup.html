@@ -1,1 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://github.com/ElMarcels/web/blob/main/marcels-sinfondo.png?raw=true">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Setup | ElMarcels</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts: Instrument Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --accent-purple: #7c3aed;
+            --accent-magenta: #d946ef;
+            --accent-blue: #3b82f6;
+        }
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        #spotlight {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(600px circle at var(--x) var(--y), rgba(124, 58, 237, 0.15), transparent 80%);
+            z-index: 50;
+        }
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-magenta) 50%, var(--accent-blue) 100%);
+            background-size: 200% 200%;
+            animation: gradient-move 3s ease-in-out infinite;
+        }
+        @keyframes gradient-move {
+            0% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .bento-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-card:hover {
+            border-color: var(--accent-magenta);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.3);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--accent-purple), var(--accent-blue));
+            border-radius: 10px;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        .program-tag {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .program-tag:hover {
+            background: rgba(124, 58, 237, 0.4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="relative">
+    <div id="spotlight" class="fixed inset-0 pointer-events-none"></div>
 
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md">
+        <a href="https://elmarcels.jixen.xyz" class="text-2xl font-black bg-clip-text text-transparent bg-gradient-custom">ElMarcels</a>
+        <a href="https://elmarcels.jixen.xyz" class="text-slate-400 hover:text-white transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Home
+        </a>
+    </nav>
+
+    <main class="pt-32 pb-20 px-4 md:px-10 max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <div class="bento-card rounded-3xl p-10 md:p-16 mb-8 relative overflow-hidden" data-aos="fade-right">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-custom opacity-20 blur-3xl rounded-full -mr-32 -mt-32"></div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
+                <span class="text-transparent bg-clip-text bg-gradient-custom glow-text">My</span><br>
+                <strong>Development Setup</strong>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 font-medium mb-8 max-w-3xl">
+                A complete overview of my workstation, tools, and development environment that I use daily to build amazing projects.
+            </p>
+        </div>
+
+        <!-- Main Laptop Section -->
+        <div class="bento-card rounded-3xl p-8 md:p-10 mb-8" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-gradient-custom rounded-xl flex items-center justify-center">
+                    <i class="fas fa-laptop text-white text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold">Main Workstation</h2>
+            </div>
+            
+            <div class="max-w-3xl">
+                <h3 class="text-xl font-semibold text-purple-400 mb-4">💻 Laptop</h3>
+                <div class="space-y-1">
+                    <div class="spec-item">
+                        <span class="text-slate-400">Model</span>
+                        <span class="font-semibold">HP OMEN 17</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="text-slate-400">Processor</span>
+                        <span class="font-semibold">AMD Ryzen 9 8945HS</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="text-slate-400">Graphics</span>
+                        <span class="font-semibold">NVIDIA GeForce RTX 4060 GPU LAPTOP</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="text-slate-400">RAM</span>
+                        <span class="font-semibold">32GB with speed 5600 MT/s</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="text-slate-400">Storage</span>
+                        <span class="font-semibold">1TB SSD Disk</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="text-slate-400">Display</span>
+                        <span class="font-semibold">17" 240Hz</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peripherals Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Monitor -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-right">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🖥️</div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2">Primary Monitor</h3>
+                        <p class="text-slate-400 mb-3">Asus TUF Gaming VG27AQML5A</p>
+                        <div class="space-y-1 text-sm">
+                            <div class="spec-item">
+                                <span class="text-slate-500">Size</span>
+                                <span>27"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Resolution</span>
+                                <span>2560x1440 (QHD)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Refresh Rate</span>
+                                <span>300Hz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Panel</span>
+                                <span>Fast-IPS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyboard -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-left">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">⌨️</div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2">Keyboard</h3>
+                        <p class="text-slate-400 mb-3">Trust. K1 (Dongle, Bluetooth. Rechargable)</p>
+                        <div class="space-y-1 text-sm">
+                            <div class="spec-item">
+                                <span class="text-slate-500">Layout</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Connection</span>
+                                <span>Bluetooth / Dongle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mouse -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-right">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🖱️</div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2">Mouse</h3>
+                        <p class="text-slate-400 mb-3">SteelSeries Aerox 3 Wireless & Corsair Scimitar RGB Elite</p>
+                        <div class="space-y-1 text-sm">
+                            <div class="spec-item">
+                                <span class="text-slate-500">Weight</span>
+                                <span>68g</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">DPI</span>
+                                <span>26K</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Battery</span>
+                                <span>70+ hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-left">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🎧</div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2">Audio</h3>
+                        <p class="text-slate-400 mb-3">Apple Airpods 4</p>
+                        <div class="space-y-1 text-sm">
+                            <div class="spec-item">
+                                <span class="text-slate-500">Type</span>
+                                <span>Earbuds</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Noise Cancellation</span>
+                                <span>Active (ANC)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="text-slate-500">Battery</span>
+                                <span>30+ hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Tools & Software -->
+        <div class="bento-card rounded-3xl p-8 md:p-10 mb-8" data-aos="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-gradient-custom rounded-xl flex items-center justify-center">
+                    <i class="fas fa-tools text-white text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold">Development Tools & Software</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- IDEs & Editors -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">📝 IDEs & Editors</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">VS Code</span>
+                        <span class="program-tag">IntelliJ IDEA</span>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">💻 Programming Languages</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">JavaScript/TypeScript</span>
+                        <span class="program-tag">Python</span>
+                        <span class="program-tag">Java</span>
+                        <span class="program-tag">C#</span>
+                        <span class="program-tag">SQL</span>
+                        <span class="program-tag">HTML/CSS</span>
+                        <span class="program-tag">ETC...</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">🚀 Frameworks & Libraries</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">React</span>
+                        <span class="program-tag">Next.js</span>
+                        <span class="program-tag">Node.js</span>
+                        <span class="program-tag">Express</span>
+                        <span class="program-tag">Tailwind CSS</span>
+                        <span class="program-tag">Spring Boot</span>
+                        <span class="program-tag">ETC...</span>
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">🗄️ Databases (Need to Learn)</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">PostgreSQL</span>
+                        <span class="program-tag">MongoDB</span>
+                        <span class="program-tag">Redis</span>
+                        <span class="program-tag">MySQL</span>
+                        <span class="program-tag">ETC...</span>
+                    </div>
+                </div>
+
+                <!-- DevOps & Tools -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">🔧 DevOps & Tools</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">Git & GitHub</span>
+                        <span class="program-tag">Vercel</span>
+                    </div>
+                </div>
+
+                <!-- Communication -->
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">💬 Communication</h3>
+                    <div class="flex flex-wrap">
+                        <span class="program-tag">Discord</span>
+                        <span class="program-tag">Slack</span>
+                        <span class="program-tag">Gmail</span>
+                        <span class="program-tag">Twitter / X</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workspace Configuration -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- VS Code Extensions -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-up">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fas fa-puzzle-piece text-purple-400 text-2xl"></i>
+                    <h3 class="text-xl font-bold">VS Code Extensions</h3>
+                </div>
+                <ul class="space-y-2 text-slate-300">
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Cline</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Auto Rename Tag</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>VS-Code ICONS</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Beautify</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Error Lens</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>CodeSnap</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Productivity -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fas fa-rocket text-pink-400 text-2xl"></i>
+                    <h3 class="text-xl font-bold">Browser Extensions</h3>
+                </div>
+                <ul class="space-y-2 text-slate-300">
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Proton Pass</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>2FA Authenticator</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Shazam</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Adobe Acrobat PDF Reader</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Gumbo - Twitch Companion</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>ETC...</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+            <!-- Productivity -->
+            <div class="bento-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fas fa-rocket text-pink-400 text-2xl"></i>
+                    <h3 class="text-xl font-bold">Productivity & Others</h3>
+                </div>
+                <ul class="space-y-2 text-slate-300">
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Notion Calendar</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>MechaKeys</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Spotify</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Discord</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>Copilot</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-check text-green-400 text-sm"></i>
+                        <span>ETC...</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fun Fact -->
+        <div class="mt-8 text-center" data-aos="fade-up">
+            <p class="text-slate-500 text-sm">
+                <i class="fas fa-heart text-pink-500"></i>
+                This setup evolves constantly as I discover new tools and optimize my workflow
+            </p>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 ElMarcels. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1000, once: true });
+
+            const spotlight = document.getElementById('spotlight');
+            window.addEventListener('mousemove', e => {
+                spotlight.style.setProperty('--x', `${e.clientX}px`);
+                spotlight.style.setProperty('--y', `${e.clientY}px`);
+            });
+        });
+    </script>
+</body>
+</html>
