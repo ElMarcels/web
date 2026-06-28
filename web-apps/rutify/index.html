@@ -1,1 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rutify – Your routines, your rhythm</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a001a;
+      color: #e4d0ff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(120, 0, 255, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(200, 0, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(60, 40, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #0a001a 0%, #12002e 50%, #0a001a 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(2px 2px at 20% 30%, rgba(180, 100, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 40% 70%, rgba(224, 64, 251, 0.3), transparent),
+        radial-gradient(2px 2px at 60% 20%, rgba(124, 77, 255, 0.3), transparent),
+        radial-gradient(2px 2px at 80% 60%, rgba(180, 100, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(200, 150, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 70% 90%, rgba(224, 64, 251, 0.3), transparent),
+        radial-gradient(1px 1px at 90% 10%, rgba(124, 77, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 30% 50%, rgba(200, 150, 255, 0.2), transparent);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .logo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #b388ff, #e040fb, #7c4dff, #536dfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      margin-bottom: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      box-shadow: 0 0 30px rgba(124, 77, 255, 0.3);
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: rgba(200, 150, 255, 0.7);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .sub {
+      font-size: 1.05rem;
+      color: rgba(200, 150, 255, 0.5);
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.9rem 2rem;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7c4dff, #e040fb);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(124, 77, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(124, 77, 255, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(180, 80, 255, 0.1);
+      color: #c084fc;
+      border: 1px solid rgba(180, 80, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(180, 80, 255, 0.2);
+      transform: translateY(-3px);
+      border-color: #b388ff;
+    }
+
+    .btn-icon {
+      font-size: 1.3rem;
+    }
+
+    .mockup-section {
+      padding: 4rem 1.5rem 5rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(120, 0, 255, 0.08) 0%, transparent 60%);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #b388ff, #e040fb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-sub {
+      color: rgba(200, 150, 255, 0.5);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .mockup-card {
+      background: rgba(30, 0, 60, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(180, 80, 255, 0.12);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .mockup-card:hover {
+      border-color: rgba(180, 80, 255, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(124, 77, 255, 0.1);
+    }
+
+    .mockup-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .mockup-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e0b0ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .mockup-card p {
+      font-size: 0.9rem;
+      color: rgba(200, 150, 255, 0.5);
+    }
+
+    .features {
+      padding: 4rem 1.5rem 5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .feature-item {
+      background: rgba(30, 0, 60, 0.4);
+      border: 1px solid rgba(180, 80, 255, 0.08);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(30, 0, 60, 0.6);
+      border-color: rgba(180, 80, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #d0a0ff;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-item p {
+      font-size: 0.9rem;
+      color: rgba(200, 150, 255, 0.5);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(120, 0, 255, 0.1) 0%, transparent 60%);
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #b388ff, #e040fb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta p {
+      color: rgba(200, 150, 255, 0.5);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .cta .btn {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(180, 80, 255, 0.08);
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: rgba(180, 80, 255, 0.3);
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: rgba(180, 80, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: #b388ff;
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2.4rem;
+      }
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+      }
+      .tagline {
+        font-size: 1rem;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="logo">
+        <img src="../../../apps/Rutify/build/rutify.ico" alt="" class="logo-icon">
+        Rutify
+      </div>
+      <p class="tagline">Your routines, your rhythm.</p>
+      <p class="sub">
+        A stunning routine management app with a liquid glass design.
+        Build habits, organize your day, and stay in flow — effortlessly.
+      </p>
+      <div class="download-buttons">
+        <a href="../../../apps/Rutify/dist/Rutify-Setup-1.0.0.exe" download class="btn btn-primary">
+          <span class="btn-icon">⬇</span> Download For Windows
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mockup-section">
+    <h2 class="section-title">Designed around you</h2>
+    <p class="section-sub">Liquid glass aesthetics meet practical routine tracking.</p>
+    <div class="mockup-grid">
+      <div class="mockup-card">
+        <div class="mockup-icon">&#128204;</div>
+        <h3>Daily routines</h3>
+        <p>Create and manage routines for every part of your day.</p>
+      </div>
+      <div class="mockup-card">
+        <div class="mockup-icon">&#127912;</div>
+        <h3>Liquid glass UI</h3>
+        <p>Smooth, frosted interfaces that feel premium and modern.</p>
+      </div>
+      <div class="mockup-card">
+        <div class="mockup-icon">&#128200;</div>
+        <h3>Progress tracking</h3>
+        <p>See your streaks and stats at a glance. Stay motivated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Rutify?</h2>
+    <p class="section-sub">Built for consistency, designed for beauty.</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">&#9889;</div>
+        <h3>Fast &amp; lightweight</h3>
+        <p>Built with Electron and optimized for speed. No bloat.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#128274;</div>
+        <h3>100% offline</h3>
+        <p>Your data never leaves your device. Complete privacy.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#127775;</div>
+        <h3>Custom themes</h3>
+        <p>Choose from a selection of beautiful color schemes.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#128227;</div>
+        <h3>Smart reminders</h3>
+        <p>Get notified when it's time for your next routine.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#128202;</div>
+        <h3>Detailed stats</h3>
+        <p>Track your consistency with charts and daily logs.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#128230;</div>
+        <h3>Export data</h3>
+        <p>Backup or export your routines anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Find your rhythm.</h2>
+    <p>Download Rutify and take control of your daily routines.</p>
+    <a href="../../../apps/Rutify/dist/Rutify-Setup-1.0.0.exe" download class="btn btn-primary">
+      <span class="btn-icon">⬇</span> Download now
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 <a href="https://elmarcels.jixen.xyz">ElMarcels</a></p>
+  </footer>
+
+</body>
+</html>
