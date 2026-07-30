@@ -1,205 +1,270 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <link rel="icon" type="image/png" href="https://github.com/ElMarcels/web/blob/main/marcels-sinfondo.png?raw=true">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElMarcels | Mail List</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #020617;
-            --accent-purple: #7c3aed;
-            --accent-magenta: #d946ef;
-            --accent-blue: #3b82f6;
-        }
-        body {
-            font-family: 'Instrument Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        #spotlight {
-            pointer-events: none;
-            background: radial-gradient(600px circle at var(--x) var(--y), rgba(124, 58, 237, 0.15), transparent 80%);
-        }
-        .bg-gradient-custom {
-            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-magenta) 50%, var(--accent-blue) 100%);
-            background-size: 200% 200%;
-            animation: gradient-move 3s ease-in-out infinite;
-        }
-        @keyframes gradient-move {
-            0% { background-position: 100% 50%; }
-            50% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        .bento-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .bento-card:hover {
-            border-color: var(--accent-magenta);
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.3);
-        }
-        .glow-text {
-            text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--accent-purple), var(--accent-blue));
-            border-radius: 10px;
-        }
-        .mail-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .copy-btn:hover {
-            background: rgba(217, 70, 239, 0.2);
-            border-color: var(--accent-magenta);
-        }
-        .copy-btn.copied {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: var(--accent-blue);
-        }
-        .tag-badge {
-            background: rgba(124, 58, 237, 0.15);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #a78bfa;
-        }
-    </style>
-</head>
-<body class="relative">
-    <div id="spotlight" class="fixed inset-0 z-50"></div>
+    <head>
+        <link
+            rel="icon"
+            type="image/png"
+            href="https://github.com/ElMarcels/web/blob/main/marcels-sinfondo.png?raw=true"
+        />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ElMarcels | Mail List</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <style>
+            :root {
+                --bg-dark: #020617;
+                --accent-purple: #7c3aed;
+                --accent-magenta: #d946ef;
+                --accent-blue: #3b82f6;
+            }
+            body {
+                font-family: "Instrument Sans", sans-serif;
+                background-color: var(--bg-dark);
+                color: #f8fafc;
+                overflow-x: hidden;
+            }
+            #spotlight {
+                pointer-events: none;
+                background: radial-gradient(
+                    600px circle at var(--x) var(--y),
+                    rgba(124, 58, 237, 0.15),
+                    transparent 80%
+                );
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-purple) 0%,
+                    var(--accent-magenta) 50%,
+                    var(--accent-blue) 100%
+                );
+                background-size: 200% 200%;
+                animation: gradient-move 3s ease-in-out infinite;
+            }
+            @keyframes gradient-move {
+                0% {
+                    background-position: 100% 50%;
+                }
+                50% {
+                    background-position: 0% 50%;
+                }
+                100% {
+                    background-position: 100% 50%;
+                }
+            }
+            .bento-card {
+                background: rgba(30, 41, 59, 0.4);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .bento-card:hover {
+                border-color: var(--accent-magenta);
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 10px 30px -10px rgba(217, 70, 239, 0.3);
+            }
+            .glow-text {
+                text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+            }
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--bg-dark);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(
+                    var(--accent-purple),
+                    var(--accent-blue)
+                );
+                border-radius: 10px;
+            }
+            .mail-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.25rem;
+                flex-shrink: 0;
+            }
+            .copy-btn {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+            .copy-btn:hover {
+                background: rgba(217, 70, 239, 0.2);
+                border-color: var(--accent-magenta);
+            }
+            .copy-btn.copied {
+                background: rgba(59, 130, 246, 0.2);
+                border-color: var(--accent-blue);
+            }
+            .tag-badge {
+                background: rgba(124, 58, 237, 0.15);
+                border: 1px solid rgba(124, 58, 237, 0.3);
+                padding: 0.25rem 0.75rem;
+                border-radius: 999px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: #a78bfa;
+            }
+        </style>
+    </head>
+    <body class="relative">
+        <div id="spotlight" class="fixed inset-0 z-50"></div>
 
-    <nav class="fixed top-0 w-full z-40 p-6 flex justify-between items-center backdrop-blur-md">
-        <a href="../index.html" class="text-2xl font-black bg-clip-text text-transparent bg-gradient-custom">ElMarcels</a>
-        <a href="../index.html" class="text-slate-400 hover:text-white transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i>Back
-        </a>
-    </nav>
+        <nav
+            class="fixed top-0 w-full z-40 p-6 flex justify-between items-center backdrop-blur-md"
+        >
+            <a
+                href="../index.html"
+                class="text-2xl font-black bg-clip-text text-transparent bg-gradient-custom"
+                >ElMarcels</a
+            >
+            <a
+                href="../index.html"
+                class="text-slate-400 hover:text-white transition-colors"
+            >
+                <i class="fas fa-arrow-left mr-2"></i>Back
+            </a>
+        </nav>
 
-    <main class="pt-32 pb-20 px-4 md:px-10 max-w-4xl mx-auto">
-        <div data-aos="fade-up">
-            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter">
-                <span class="text-transparent bg-clip-text bg-gradient-custom glow-text">Mail</span> List
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-2">All contact email addresses in one place</p>
-            <p class="text-slate-500 text-sm mb-10">Click the copy button to copy any address</p>
-        </div>
-
-        <div class="space-y-4">
-            <div class="bento-card rounded-2xl p-5 flex items-center gap-5" data-aos="fade-up">
-                <div class="mail-icon bg-purple-500/10 text-purple-400">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-lg">Personal</p>
-                    <p class="text-slate-400 text-sm truncate" id="email-1">marcos@elmarcels.com</p>
-                </div>
-                <button onclick="copyEmail('email-1', this)" class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <i class="far fa-copy"></i>
-                    <span>Copy</span>
-                </button>
+        <main class="pt-32 pb-20 px-4 md:px-10 max-w-4xl mx-auto">
+            <div data-aos="fade-up">
+                <h1
+                    class="text-4xl md:text-6xl font-black mb-4 tracking-tighter"
+                >
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-custom glow-text"
+                        >Mail</span
+                    >
+                    List
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-2">
+                    All contact email addresses in one place
+                </p>
+                <p class="text-slate-500 text-sm mb-10">
+                    Click the copy button to copy any address
+                </p>
             </div>
 
-            <div class="bento-card rounded-2xl p-5 flex items-center gap-5" data-aos="fade-up" data-aos-delay="50">
-                <div class="mail-icon bg-blue-500/10 text-blue-400">
-                    <i class="fas fa-briefcase"></i>
+            <div class="space-y-4">
+                <div
+                    class="bento-card rounded-2xl p-5 flex items-center gap-5"
+                    data-aos="fade-up"
+                >
+                    <div class="mail-icon bg-purple-500/10 text-purple-400">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-lg">Personal</p>
+                        <p class="text-slate-400 text-sm truncate" id="email-1">
+                            hola@elmarcels.xyz
+                        </p>
+                    </div>
+                    <button
+                        onclick="copyEmail('email-1', this)"
+                        class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2"
+                    >
+                        <i class="far fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
                 </div>
-                <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-lg">Work</p>
-                    <p class="text-slate-400 text-sm truncate" id="email-2">contact@elmarcels.com</p>
+
+                <div
+                    class="bento-card rounded-2xl p-5 flex items-center gap-5"
+                    data-aos="fade-up"
+                    data-aos-delay="50"
+                >
+                    <div class="mail-icon bg-blue-500/10 text-blue-400">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-lg">Work</p>
+                        <p class="text-slate-400 text-sm truncate" id="email-2">
+                            contact@elmarcels.xyz
+                        </p>
+                    </div>
+                    <button
+                        onclick="copyEmail('email-2', this)"
+                        class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2"
+                    >
+                        <i class="far fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
                 </div>
-                <button onclick="copyEmail('email-2', this)" class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <i class="far fa-copy"></i>
-                    <span>Copy</span>
-                </button>
+
+                <div
+                    class="bento-card rounded-2xl p-5 flex items-center gap-5"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                >
+                    <div class="mail-icon bg-fuchsia-500/10 text-fuchsia-400">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-semibold text-lg">Orders</p>
+                        <p class="text-slate-400 text-sm truncate" id="email-3">
+                            orders@elmarcels.xyz
+                        </p>
+                    </div>
+                    <button
+                        onclick="copyEmail('email-3', this)"
+                        class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2"
+                    >
+                        <i class="far fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
             </div>
+        </main>
 
-            <div class="bento-card rounded-2xl p-5 flex items-center gap-5" data-aos="fade-up" data-aos-delay="100">
-                <div class="mail-icon bg-fuchsia-500/10 text-fuchsia-400">
-                    <i class="fab fa-discord"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-lg">Support</p>
-                    <p class="text-slate-400 text-sm truncate" id="email-3">support@elmarcels.com</p>
-                </div>
-                <button onclick="copyEmail('email-3', this)" class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <i class="far fa-copy"></i>
-                    <span>Copy</span>
-                </button>
-            </div>
+        <footer class="py-12 text-center text-slate-500 text-sm">
+            <p>&copy; 2026 ElMarcels. All Rights Reserved.</p>
+        </footer>
 
-            <div class="bento-card rounded-2xl p-5 flex items-center gap-5" data-aos="fade-up" data-aos-delay="150">
-                <div class="mail-icon bg-emerald-500/10 text-emerald-400">
-                    <i class="fas fa-newspaper"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-lg">Business Inquiries</p>
-                    <p class="text-slate-400 text-sm truncate" id="email-4">business@elmarcels.com</p>
-                </div>
-                <button onclick="copyEmail('email-4', this)" class="copy-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-300 flex items-center gap-2">
-                    <i class="far fa-copy"></i>
-                    <span>Copy</span>
-                </button>
-            </div>
-        </div>
-    </main>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                AOS.init({ duration: 800, once: true });
 
-    <footer class="py-12 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 ElMarcels. All Rights Reserved.</p>
-    </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            AOS.init({ duration: 800, once: true });
-
-            const spotlight = document.getElementById('spotlight');
-            window.addEventListener('mousemove', e => {
-                spotlight.style.setProperty('--x', `${e.clientX}px`);
-                spotlight.style.setProperty('--y', `${e.clientY}px`);
+                const spotlight = document.getElementById("spotlight");
+                window.addEventListener("mousemove", (e) => {
+                    spotlight.style.setProperty("--x", `${e.clientX}px`);
+                    spotlight.style.setProperty("--y", `${e.clientY}px`);
+                });
             });
-        });
 
-        function copyEmail(elementId, btn) {
-            const text = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                const icon = btn.querySelector('i');
-                const span = btn.querySelector('span');
-                icon.className = 'fas fa-check';
-                span.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    icon.className = 'far fa-copy';
-                    span.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
-        }
-    </script>
-</body>
+            function copyEmail(elementId, btn) {
+                const text = document.getElementById(elementId).textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const icon = btn.querySelector("i");
+                    const span = btn.querySelector("span");
+                    icon.className = "fas fa-check";
+                    span.textContent = "Email Copied!";
+                    btn.classList.add("copied");
+                    setTimeout(() => {
+                        icon.className = "far fa-copy";
+                        span.textContent = "Copy";
+                        btn.classList.remove("copied");
+                    }, 2000);
+                });
+            }
+        </script>
+    </body>
 </html>
