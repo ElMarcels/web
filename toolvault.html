@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="metaTitle">ToolVault — Recursos gratuitos para desarrolladores</title>
+  <meta name="description" id="metaDesc" content="Un directorio curado de herramientas y recursos gratuitos útiles para desarrolladores." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/GeistMono%5Bwght%5D.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-pixel/GeistPixel-Square.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>" />
+  <style>
+    @font-face {
+      font-family: 'Geist Mono';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/GeistMono%5Bwght%5D.woff2') format('woff2');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist Pixel Square';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist Pixel Grid';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-pixel/GeistPixel-Grid.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --font-body: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-display: 'Geist Pixel Square', 'Geist Mono', monospace;
+      --font-grid: 'Geist Pixel Grid', 'Geist Mono', monospace;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --transition: 0.2s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #08090b;
+      --bg-raised: #0d0f12;
+      --bg-card: #101215;
+      --bg-soft: #14171b;
+      --text: #f2f4ef;
+      --text-soft: #a0a59d;
+      --text-faint: #6d726b;
+      --line: #262a2d;
+      --line-strong: #393e41;
+      --accent: #caff3d;
+      --accent-soft: rgba(202, 255, 61, 0.12);
+      --purple: #a58aff;
+      --cyan: #5ce1e6;
+      --orange: #ff9f43;
+      --pink: #ff75aa;
+      --blue: #67a8ff;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      --green-bg: rgba(202, 255, 61, 0.1);
+      --green-text: #caff3d;
+      --yellow-bg: rgba(245, 185, 66, 0.12);
+      --yellow-text: #f5b942;
+      --red-bg: rgba(239, 91, 91, 0.12);
+      --red-text: #ef5b5b;
+    }
+
+    [data-theme="light"] {
+      --bg: #f1f2ed;
+      --bg-raised: #f8f9f5;
+      --bg-card: #fafbf7;
+      --bg-soft: #e7e9e2;
+      --text: #11130f;
+      --text-soft: #545950;
+      --text-faint: #81877d;
+      --line: #d2d5cd;
+      --line-strong: #afb4a9;
+      --accent: #577a00;
+      --accent-soft: rgba(87, 122, 0, 0.12);
+      --purple: #7c3aed;
+      --cyan: #0891b2;
+      --orange: #ea580c;
+      --pink: #db2777;
+      --blue: #2563eb;
+      --shadow: 0 28px 80px rgba(20, 24, 16, 0.11);
+      --green-bg: rgba(87, 122, 0, 0.1);
+      --green-text: #577a00;
+      --yellow-bg: rgba(180, 130, 30, 0.12);
+      --yellow-text: #8a6d0e;
+      --red-bg: rgba(220, 60, 60, 0.1);
+      --red-text: #b91c1c;
+    }
+
+    html { font-size: 15px; }
+    body {
+      font-family: var(--font-body);
+      background: radial-gradient(circle at 50% -20%, rgba(202, 255, 61, 0.043), transparent 32rem), var(--bg);
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+    .hero {
+      padding: 52px 0 32px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto 18px;
+      line-height: 1.6;
+    }
+
+    .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-bottom: 28px;
+    }
+    .stats span { display: flex; align-items: center; gap: 4px; }
+    .stats strong {
+      font-family: var(--font-grid);
+      font-weight: 400;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .search-wrap {
+      max-width: 480px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg-raised);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      outline: none;
+      transition: all var(--transition);
+      text-align: center;
+    }
+    .search-wrap input::placeholder { color: var(--text-faint); }
+    .search-wrap input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 28px;
+    }
+    .pill {
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .pill:hover { border-color: var(--text-faint); color: var(--text); }
+    .pill.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+    .pill .count {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+    }
+    .pill.active .count { color: var(--accent); }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .toolbar-left { display: flex; align-items: center; gap: 12px; }
+    .results-info {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+    }
+    .results-info strong { color: var(--text); font-weight: 500; }
+    .toolbar-right { display: flex; align-items: center; gap: 6px; }
+    .tool-btn {
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      min-width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      font-family: var(--font-body);
+      padding: 0 8px;
+      transition: all var(--transition);
+    }
+    .tool-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tool-btn.active-lang {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .divider { height: 1px; background: var(--line); margin-bottom: 16px; }
+
+    .grid { display: flex; flex-direction: column; gap: 6px; padding-bottom: 60px; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      transition: all var(--transition);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      background: var(--bg-raised);
+    }
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .card-body { flex: 1; min-width: 0; }
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .card-header h3 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .card-header .arrow {
+      color: var(--text-faint);
+      font-size: 0.7rem;
+      transition: color var(--transition);
+    }
+    .card:hover .arrow { color: var(--accent); }
+    .card p {
+      font-size: 0.7rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .card-tags {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .card .tag {
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 1px 7px;
+      border-radius: 100px;
+      background: var(--bg-soft);
+      color: var(--text-faint);
+    }
+    .card .badge {
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 1px 7px;
+      border-radius: 100px;
+    }
+    .card .badge.free {
+      background: var(--green-bg);
+      color: var(--green-text);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    }
+    .card .badge.nosignup {
+      background: var(--yellow-bg);
+      color: var(--yellow-text);
+      border: 1px solid color-mix(in srgb, #f5b942 55%, var(--line));
+    }
+    .card .badge.trial {
+      background: var(--red-bg);
+      color: var(--red-text);
+      border: 1px solid color-mix(in srgb, #ef5b5b 55%, var(--line));
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-faint);
+    }
+    .empty-state .emoji { font-size: 1.8rem; margin-bottom: 10px; }
+    .empty-state p { font-size: 0.78rem; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-faint);
+    }
+    .footer a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 3px; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 720px) {
+      .hero h1 { font-size: 1.6rem; }
+      .hero { padding: 32px 0 20px; }
+      .stats { gap: 12px; font-size: 0.7rem; }
+      .container { padding: 0 14px; }
+      .card { padding: 12px 14px; }
+    }
+    @media (max-width: 480px) {
+      .pills { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <section class="hero">
+    <h1>Tool<span class="accent">Vault</span></h1>
+    <p class="subtitle" id="heroSubtitle">Un directorio curado de productos con tiers gratuitos útiles para desarrolladores, creadores y pequeños equipos.</p>
+    <div class="stats">
+      <span><strong id="statTotal">0</strong> <span id="labelResources">recursos</span></span>
+      <span><strong id="statCategories">0</strong> <span id="labelCategories">categorías</span></span>
+      <span id="labelUpdated">Actualizado Jul 2026</span>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Buscar por producto, categoría o uso…" autocomplete="off" />
+    </div>
+  </section>
+
+  <div class="pills" id="pills"></div>
+
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span class="results-info"><strong id="visibleCount">0</strong> <span id="labelFound">recursos encontrados</span></span>
+    </div>
+    <div class="toolbar-right">
+      <button class="tool-btn active-lang" id="langToggle" aria-label="Toggle language">ES/EN</button>
+      <button class="tool-btn" id="themeToggle" aria-label="Cambiar tema">☾</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid" id="grid"></div>
+
+</div>
+
+<footer class="footer">
+  <p> &copy; ToolVault 2026 &mdash; <span id="footerInspired">Un Proyecto de</span> <a href="https://web.elmarcels.xyz" target="_blank" rel="noopener">ElMarcels</a></p>
+</footer>
+
+<script>
+  const i18n = {
+    es: {
+      title: "ToolVault — Recursos gratuitos para desarrolladores",
+      metaDesc: "Un directorio curado de herramientas y recursos gratuitos útiles para desarrolladores.",
+      subtitle: "Un directorio curado de productos con tiers gratuitos útiles para desarrolladores, creadores y pequeños equipos.",
+      searchPlaceholder: "Buscar por producto, categoría o uso…",
+      resources: "recursos",
+      categories: "categorías",
+      updated: "Actualizado Jul 2026",
+      found: "recursos encontrados",
+      all: "Todos",
+      empty: "No se encontraron recursos con los filtros actuales. Prueba con otra búsqueda o categoría.",
+      footerInspired: "Un Proyecto de",
+      badgeFree: "Sin tarjeta",
+      badgeNosignup: "Sin registro",
+      badgeTrial: "Solo prueba",
+      badgeCard: "Tarjeta requerida",
+    },
+    en: {
+      title: "ToolVault — Free tools for developers",
+      metaDesc: "A curated directory of genuinely useful free developer tools and resources.",
+      subtitle: "A carefully selected catalog of products with genuinely useful free tiers for developers, makers and small teams.",
+      searchPlaceholder: "Search by product, category or use case…",
+      resources: "resources",
+      categories: "categories",
+      updated: "Updated Jul 2026",
+      found: "resources found",
+      all: "All",
+      empty: "No resources found with the current filters. Try a different search or category.",
+      footerInspired: "A Project by",
+      badgeFree: "No card required",
+      badgeNosignup: "No sign-up",
+      badgeTrial: "Trial only",
+      badgeCard: "Card required",
+    }
+  };
+
+  const badgeKeys = {
+    free:     'badgeFree',
+    nosignup: 'badgeNosignup',
+    trial:    'badgeTrial',
+    card:     'badgeCard',
+  };
+
+  const resources = [
+    { id:1,   name:"InsForge",       desc_es:"Backend agnóstico con base de datos, auth, almacenamiento, funciones y acceso a modelos.",                  desc_en:"An agent-native backend with database, auth, storage, functions and model access.",                                          cat:"Data & backend",               icon:"✦", url:"https://insforge.com",       badge:"free" },
+    { id:2,   name:"CodeRabbit",     desc_es:"Code review con IA para PRs, IDEs y terminal. Gratuito para proyectos open source.",                        desc_en:"AI code reviews for PRs, IDEs and the CLI, with free access for open-source projects.",                                        cat:"AI & machine learning",        icon:"✦", url:"https://coderabbit.ai",     badge:"free" },
+    { id:3,   name:"Cloudflare",     desc_es:"Plataforma global para DNS, CDN, edge functions, almacenamiento y seguridad web.",                          desc_en:"A global developer platform for DNS, CDN, edge functions, storage and web security.",                                          cat:"Hosting & deploy",             icon:"✦", url:"https://cloudflare.com",    badge:"free" },
+    { id:4,   name:"Vercel",         desc_es:"Deploy de apps web con CDN global, SSL y preview URLs en cada push.",                                       desc_en:"Deploy web apps with a global CDN, SSL and preview URLs on every push.",                                                      cat:"Hosting & deploy",             icon:"✦", url:"https://vercel.com",       badge:"free" },
+    { id:5,   name:"Supabase",       desc_es:"Backend Postgres con base de datos, auth, almacenamiento, tiempo real y edge functions.",                   desc_en:"A Postgres backend with database, auth, storage, realtime and edge functions.",                                              cat:"Data & backend",               icon:"✦", url:"https://supabase.com",     badge:"free" },
+    { id:6,   name:"Neon",           desc_es:"Postgres serverless con branching instantáneo y compute scale-to-zero.",                                    desc_en:"Serverless Postgres with instant branching and scale-to-zero compute.",                                                       cat:"Data & backend",               icon:"✦", url:"https://neon.tech",       badge:"free" },
+    { id:7,   name:"Turso",          desc_es:"SQLite alojado en el edge con réplicas cerca de tus usuarios.",                                             desc_en:"Edge-hosted SQLite databases with replicas close to your users.",                                                            cat:"Data & backend",               icon:"✦", url:"https://turso.tech",      badge:"free" },
+    { id:8,   name:"Upstash",        desc_es:"Redis, Kafka y workflows serverless con tiers gratuitos basados en uso.",                                   desc_en:"Serverless Redis, Kafka and workflow tools with usage-based free tiers.",                                                    cat:"Data & backend",               icon:"✦", url:"https://upstash.com",     badge:"free" },
+    { id:9,   name:"Hugging Face",   desc_es:"Descubre modelos, datasets, ejecuta demos y publica aplicaciones de ML.",                                    desc_en:"Discover models and datasets, run demos, and publish ML applications.",                                                      cat:"AI & machine learning",        icon:"✦", url:"https://huggingface.co",  badge:"free" },
+    { id:10,  name:"Google AI Studio",desc_es:"Prototipa con modelos Gemini en el navegador y genera API keys para desarrollo.",                           desc_en:"Prototype with Gemini models in a browser playground and generate API keys for development.",                                cat:"AI & machine learning",        icon:"✦", url:"https://aistudio.google.com", badge:"free" },
+    { id:11,  name:"NVIDIA NIM",     desc_es:"Prototipa con APIs hosted de modelos de IA líderes y microservicios NVIDIA NIM.",                            desc_en:"Prototype with hosted APIs for a rotating catalog of leading AI models and NVIDIA NIM microservices.",                       cat:"AI & machine learning",        icon:"✦", url:"https://build.nvidia.com", badge:"free" },
+    { id:12,  name:"Groq",           desc_es:"Inferencia rápida para modelos open source mediante API compatible con OpenAI.",                             desc_en:"Build with fast hosted inference for open models through an OpenAI-compatible API.",                                         cat:"AI & machine learning",        icon:"✦", url:"https://groq.com",        badge:"free" },
+    { id:13,  name:"Freebuff",       desc_es:"Agente de coding gratuito con anuncios, en terminal, navegador y cloud workspaces.",                         desc_en:"A free, ad-supported coding agent available in the terminal, browser and cloud workspaces.",                                 cat:"CI/CD & code",                 icon:"✦", url:"https://freebuff.dev",    badge:"free" },
+    { id:14,  name:"Clerk",          desc_es:"Autenticación y gestión de usuarios con componentes preconstruidos y pulidos.",                              desc_en:"Authentication and user management with polished prebuilt components.",                                                      cat:"Auth & users",                 icon:"✦", url:"https://clerk.com",       badge:"free" },
+    { id:15,  name:"Resend",         desc_es:"API moderna de email transaccional con excelente tooling para React y desarrolladores.",                     desc_en:"A modern transactional email API with excellent React and developer tooling.",                                              cat:"Email & forms",                icon:"✦", url:"https://resend.com",      badge:"free" },
+    { id:16,  name:"Sentry",         desc_es:"Monitorea errores, rendimiento y trazas de sesión en toda tu stack.",                                        desc_en:"Track errors, performance traces and user sessions across your stack.",                                                     cat:"Monitoring",                   icon:"✦", url:"https://sentry.io",       badge:"free" },
+    { id:17,  name:"UptimeRobot",    desc_es:"Monitor de uptime simple con alertas y páginas de estado públicas.",                                         desc_en:"Simple uptime monitoring with alerting and public status pages.",                                                           cat:"Monitoring",                   icon:"✦", url:"https://uptimerobot.com", badge:"free" },
+    { id:18,  name:"GitHub Actions", desc_es:"Automatiza builds, tests, releases y workflows junto a tu código.",                                          desc_en:"Automate builds, tests, releases and workflows next to your code.",                                                         cat:"CI/CD & code",                 icon:"✦", url:"https://github.com/features/actions", badge:"free" },
+    { id:19,  name:"Umami",          desc_es:"Analíticas web limpias y respetuosas con la privacidad con informes simples.",                               desc_en:"Clean, privacy-minded website analytics with straightforward reports.",                                                     cat:"Analytics",                    icon:"✦", url:"https://umami.is",       badge:"free" },
+    { id:20,  name:"Ahrefs Web Analytics",desc_es:"Analíticas web simples sin cookies con datos de IA, funnels y contexto SEO.",                           desc_en:"Simple, cookie-free website analytics with AI traffic, funnels and SEO context.",                                           cat:"Analytics",                    icon:"✦", url:"https://ahrefs.com/web-analytics", badge:"free" },
+    { id:21,  name:"Figma",          desc_es:"Diseño de interfaz colaborativo, prototipado y handoff para desarrolladores.",                               desc_en:"Collaborative interface design, prototyping and developer handoff.",                                                        cat:"Design & UI",                  icon:"✦", url:"https://figma.com",       badge:"free" },
+    { id:22,  name:"Linear",         desc_es:"Gestión de issues rápida con ciclos y roadmaps para equipos de software.",                                   desc_en:"Fast issue tracking, cycles and product roadmaps for software teams.",                                                      cat:"Design & UI",                  icon:"✦", url:"https://linear.app",     badge:"free" },
+    { id:23,  name:"Cloudinary",     desc_es:"Sube, transforma, optimiza y entrega imágenes y video a través de un CDN.",                                  desc_en:"Upload, transform, optimize and deliver images and video through a CDN.",                                                   cat:"Storage & media",              icon:"✦", url:"https://cloudinary.com",  badge:"free" },
+    { id:24,  name:"Netlify",        desc_es:"Plataforma completa para deploy de proyectos web modernos y funciones serverless.",                          desc_en:"A complete platform for deploying modern web projects and serverless functions.",                                           cat:"Hosting & deploy",             icon:"✦", url:"https://netlify.com",     badge:"free" },
+    { id:25,  name:"Cloud 66",       desc_es:"Despliega y gestiona aplicaciones en tu propio cloud sin el trabajo de servidores.",                         desc_en:"Deploy and manage applications on your own cloud without the server busywork.",                                            cat:"Hosting & deploy",             icon:"✦", url:"https://cloud66.com",     badge:"free" },
+    { id:26,  name:"deployment.io",  desc_es:"Automatiza deploys en AWS para sitios estáticos, servicios y entornos de preview.",                          desc_en:"Automate AWS deployments for static sites, services and preview environments.",                                            cat:"Hosting & deploy",             icon:"✦", url:"https://deployment.io",   badge:"free" },
+    { id:27,  name:"Render",         desc_es:"Ejecuta web services, sitios estáticos y tareas programadas desde un mismo panel.",                           desc_en:"Run web services, static sites and scheduled jobs from one dashboard.",                                                    cat:"Hosting & deploy",             icon:"✦", url:"https://render.com",      badge:"free" },
+    { id:28,  name:"Appish",         desc_es:"Push de contenedores Docker a slots públicos efímeros hechos para demos.",                                   desc_en:"Push Docker containers to short-lived public slots made for demos.",                                                       cat:"Hosting & deploy",             icon:"✦", url:"https://appish.io",      badge:"free" },
+    { id:29,  name:"Deno Deploy",    desc_es:"Ejecuta JavaScript y TypeScript cerca de los usuarios en una red global edge.",                               desc_en:"Run JavaScript and TypeScript close to users on a global edge network.",                                                   cat:"Hosting & deploy",             icon:"✦", url:"https://deno.com/deploy", badge:"card" },
+    { id:30,  name:"GitHub",         desc_es:"Repositorios, Pages estáticas, CI/CD y herramientas de proyecto en una plataforma.",                         desc_en:"Repositories, static Pages, CI/CD and project tools in one developer platform.",                                           cat:"Hosting & deploy",             icon:"✦", url:"https://github.com",      badge:"free" },
+    { id:31,  name:"MongoDB Atlas",  desc_es:"Clusters MongoDB gestionados con opción gratuita permanente para proyectos pequeños.",                       desc_en:"Managed MongoDB clusters with a permanent free option for small projects.",                                                cat:"Data & backend",               icon:"✦", url:"https://mongodb.com/atlas", badge:"free" },
+    { id:32,  name:"CockroachDB",    desc_es:"SQL distribuido construido para aplicaciones resilientes y globalmente disponibles.",                         desc_en:"Distributed SQL built for resilient, globally available applications.",                                                    cat:"Data & backend",               icon:"✦", url:"https://cockroachlabs.com", badge:"free" },
+    { id:33,  name:"Aiven",          desc_es:"Servicios de datos open source gestionados con planes gratuitos para productos seleccionados.",               desc_en:"Managed open-source data services with free plans for selected products.",                                                 cat:"Data & backend",               icon:"✦", url:"https://aiven.io",        badge:"free" },
+    { id:34,  name:"Braintrust",     desc_es:"Evalúa aplicaciones de IA, compara prompts y gestiona datasets de prueba.",                                  desc_en:"Evaluate AI applications, compare prompts and manage test datasets.",                                                       cat:"AI & machine learning",        icon:"✦", url:"https://braintrust.dev",   badge:"free" },
+    { id:35,  name:"Langfuse",       desc_es:"Trazado open source, gestión de prompts y evaluación para productos LLM.",                                    desc_en:"Open-source tracing, prompt management and evaluation for LLM products.",                                                  cat:"AI & machine learning",        icon:"✦", url:"https://langfuse.com",    badge:"free" },
+    { id:36,  name:"Cerebras",       desc_es:"Ejecuta modelos de IA open source mediante API compatible con OpenAI optimizada para inferencia rápida.",     desc_en:"Run open AI models through an OpenAI-compatible API optimized for very fast inference.",                                   cat:"AI & machine learning",        icon:"✦", url:"https://cerebras.ai",     badge:"free" },
+    { id:37,  name:"Mistral AI",     desc_es:"Accede a modelos de lenguaje, código, embeddings y multimodales a través de su API.",                         desc_en:"Access Mistral's language, code, embedding and multimodal models through its developer API.",                              cat:"AI & machine learning",        icon:"✦", url:"https://mistral.ai",       badge:"free" },
+    { id:38,  name:"NotebookLM",     desc_es:"Investiga y razona sobre documentos, webs, audio y fuentes con respuestas basadas en Gemini.",                desc_en:"Research and reason across documents, websites, audio and other sources with grounded Gemini answers.",                     cat:"AI & machine learning",        icon:"✦", url:"https://notebooklm.google", badge:"free" },
+    { id:39,  name:"Cloudflare Workers AI",desc_es:"Ejecuta modelos de IA open source serverless en la red global de GPU de Cloudflare.",                   desc_en:"Run serverless open-source AI models on Cloudflare's global GPU network.",                                                 cat:"AI & machine learning",        icon:"✦", url:"https://workers.ai",      badge:"free" },
+    { id:40,  name:"OpenRouter",     desc_es:"Una API para muchos modelos de lenguaje, incluyendo selección rotativa de modelos gratuitos.",                desc_en:"One API for many language models, including a rotating selection of free models.",                                         cat:"AI & machine learning",        icon:"✦", url:"https://openrouter.ai",   badge:"free" },
+    { id:41,  name:"Keywords AI",     desc_es:"Llama y monitorea muchos modelos de lenguaje a través de una interfaz consistente.",                         desc_en:"Call and monitor many language models through one consistent interface.",                                                  cat:"AI & machine learning",        icon:"✦", url:"https://keywordsai.co",    badge:"free" },
+    { id:42,  name:"Pollinations.AI",desc_es:"Genera imágenes con IA a través de una API gratuita sin registro ni API key.",                                desc_en:"Generate AI images through a free API without sign-up or API keys.",                                                       cat:"AI & machine learning",        icon:"✦", url:"https://pollinations.ai",  badge:"nosignup" },
+    { id:43,  name:"Portkey",        desc_es:"AI gateway y plano de control con logging, routing y guardrails.",                                            desc_en:"An AI gateway and control plane with logging, routing and guardrails.",                                                    cat:"AI & machine learning",        icon:"✦", url:"https://portkey.ai",      badge:"free" },
+    { id:44,  name:"Comet Opik",     desc_es:"Traza, evalúa y prueba aplicaciones LLM a lo largo del desarrollo.",                                         desc_en:"Trace, evaluate and test LLM applications throughout development.",                                                        cat:"AI & machine learning",        icon:"✦", url:"https://comet.com/opik",   badge:"free" },
+    { id:45,  name:"Auth0",          desc_es:"Identidad hosted con login social, SSO y flujos de autenticación extensibles.",                                desc_en:"Hosted identity with social login, SSO and extensible authentication flows.",                                              cat:"Auth & users",                 icon:"✦", url:"https://auth0.com",       badge:"free" },
+    { id:46,  name:"WorkOS",         desc_es:"Gestión de usuarios más funciones enterprise como SSO, SCIM y audit logs.",                                   desc_en:"User management plus enterprise features such as SSO, SCIM and audit logs.",                                               cat:"Auth & users",                 icon:"✦", url:"https://workos.com",      badge:"free" },
+    { id:47,  name:"Kinde",          desc_es:"Autenticación directa, organizaciones y control de acceso para apps SaaS.",                                   desc_en:"Straightforward authentication, organizations and feature access for SaaS apps.",                                         cat:"Auth & users",                 icon:"✦", url:"https://kinde.com",       badge:"free" },
+    { id:48,  name:"Stytch",         desc_es:"APIs y SDKs para autenticación, identidad B2B y prevención de fraude.",                                      desc_en:"APIs and SDKs for authentication, B2B identity and fraud prevention.",                                                    cat:"Auth & users",                 icon:"✦", url:"https://stytch.com",      badge:"free" },
+    { id:49,  name:"Descope",        desc_es:"Flujos de autenticación visuales respaldados por APIs y SDKs para experiencias personalizadas.",              desc_en:"Visual authentication flows backed by APIs and SDKs for custom experiences.",                                             cat:"Auth & users",                 icon:"✦", url:"https://descope.com",     badge:"free" },
+    { id:50,  name:"Logto",          desc_es:"Infraestructura de autenticación y autorización para apps de consumo y negocio.",                             desc_en:"Authentication and authorization infrastructure for consumer and business apps.",                                         cat:"Auth & users",                 icon:"✦", url:"https://logto.io",        badge:"free" },
+    { id:51,  name:"Brevo",          desc_es:"Email transaccional, campañas y gestión de contactos en una sola plataforma.",                                desc_en:"Transactional email, campaigns and contact management in one platform.",                                                  cat:"Email & forms",                icon:"✦", url:"https://brevo.com",       badge:"free" },
+    { id:52,  name:"Mailjet",        desc_es:"Envía email transaccional y marketing con APIs, SMTP y plantillas.",                                          desc_en:"Send transactional and marketing email with APIs, SMTP and templates.",                                                   cat:"Email & forms",                icon:"✦", url:"https://mailjet.com",     badge:"free" },
+    { id:53,  name:"Mailtrap",       desc_es:"Prueba email en sandboxes y envía mensajes transaccionales en producción.",                                    desc_en:"Test email safely in sandboxes and send transactional messages in production.",                                           cat:"Email & forms",                icon:"✦", url:"https://mailtrap.io",     badge:"free" },
+    { id:54,  name:"Formspree",      desc_es:"Añade un backend de formularios fiable a cualquier sitio sin escribir código de servidor.",                    desc_en:"Add a reliable form backend to any site without writing server code.",                                                    cat:"Email & forms",                icon:"✦", url:"https://formspree.io",    badge:"free" },
+    { id:55,  name:"Tally",          desc_es:"Crea formularios y encuestas flexibles con un plan gratuito generoso.",                                       desc_en:"Create flexible forms and surveys with a generous free plan.",                                                            cat:"Email & forms",                icon:"✦", url:"https://tally.so",        badge:"free" },
+    { id:56,  name:"Web3Forms",      desc_es:"Recibe envíos de formularios de sitios estáticos directamente en tu inbox mediante API.",                     desc_en:"Receive static-site form submissions directly in your inbox through an API.",                                             cat:"Email & forms",                icon:"✦", url:"https://web3forms.com",    badge:"free" },
+    { id:57,  name:"Better Stack",   desc_es:"Chequeos de uptime, logs, respuesta a incidentes y páginas de estado en un solo lugar.",                      desc_en:"Uptime checks, logs, incident response and status pages in one place.",                                                  cat:"Monitoring",                   icon:"✦", url:"https://betterstack.com",  badge:"free" },
+    { id:58,  name:"Grafana Cloud",  desc_es:"Dashboards hosted, métricas, logs, trazas y observabilidad de aplicaciones.",                                  desc_en:"Hosted dashboards, metrics, logs, traces and application observability.",                                                 cat:"Monitoring",                   icon:"✦", url:"https://grafana.com",      badge:"free" },
+    { id:59,  name:"Uptime.com",     desc_es:"Monitorización de websites, APIs y usuarios reales con alertas y flujos de incidentes.",                       desc_en:"Website, API and real-user monitoring with alerts and incident workflows.",                                               cat:"Monitoring",                   icon:"✦", url:"https://uptime.com",       badge:"trial" },
+    { id:60,  name:"Checkly",        desc_es:"Monitorización sintética code-first para apps web y APIs usando Playwright.",                                  desc_en:"Code-first synthetic monitoring for web apps and APIs using Playwright.",                                                 cat:"Monitoring",                   icon:"✦", url:"https://checklyhq.com",    badge:"free" },
+    { id:61,  name:"healthchecks.io",desc_es:"Monitoriza cron jobs y tareas background con URLs heartbeat simples.",                                         desc_en:"Monitor cron jobs and background tasks with simple heartbeat URLs.",                                                      cat:"Monitoring",                   icon:"✦", url:"https://healthchecks.io",  badge:"free" },
+    { id:62,  name:"New Relic",      desc_es:"Monitorización de rendimiento de apps e infraestructura full-stack.",                                          desc_en:"Full-stack application performance and infrastructure monitoring.",                                                       cat:"Monitoring",                   icon:"✦", url:"https://newrelic.com",     badge:"free" },
+    { id:63,  name:"Logtail",        desc_es:"Centraliza logs estructurados y consúltalos rápidamente con sintaxis similar a SQL.",                          desc_en:"Centralize structured logs and query them quickly with SQL-like syntax.",                                                 cat:"Monitoring",                   icon:"✦", url:"https://logtail.com",      badge:"free" },
+    { id:64,  name:"GitLab CI/CD",   desc_es:"Pipelines integrados, runners y entornos para proyectos GitLab.",                                             desc_en:"Integrated pipelines, runners and environments for GitLab projects.",                                                     cat:"CI/CD & code",                 icon:"✦", url:"https://gitlab.com",       badge:"free" },
+    { id:65,  name:"CircleCI",       desc_es:"Pipelines hosted flexibles con múltiples ejecutores y trabajos en paralelo.",                                  desc_en:"Flexible hosted pipelines with multiple executors and parallel jobs.",                                                    cat:"CI/CD & code",                 icon:"✦", url:"https://circleci.com",     badge:"free" },
+    { id:66,  name:"Buildkite",      desc_es:"Pipelines flexibles con orquestación hosted y tus propios agentes de build.",                                  desc_en:"Flexible pipelines with hosted orchestration and your own build agents.",                                                 cat:"CI/CD & code",                 icon:"✦", url:"https://buildkite.com",    badge:"free" },
+    { id:67,  name:"Codecov",        desc_es:"Subidas de cobertura de código convertidas en checks de PR e informes visuales.",                              desc_en:"Turn code coverage uploads into PR checks and visual reports.",                                                           cat:"CI/CD & code",                 icon:"✦", url:"https://codecov.io",       badge:"free" },
+    { id:68,  name:"SonarCloud",     desc_es:"Análisis estático en cloud para calidad de código, mantenibilidad y seguridad.",                               desc_en:"Cloud static analysis for code quality, maintainability and security.",                                                   cat:"CI/CD & code",                 icon:"✦", url:"https://sonarcloud.io",    badge:"free" },
+    { id:69,  name:"Dependabot",     desc_es:"Actualizaciones automáticas de dependencias y alertas de vulnerabilidad dentro de GitHub.",                    desc_en:"Automated dependency updates and vulnerability alerts inside GitHub.",                                                    cat:"CI/CD & code",                 icon:"✦", url:"https://dependabot.com",    badge:"free" },
+    { id:70,  name:"Jules",          desc_es:"Agente de coding asíncrono que trabaja en tareas reales en repos de GitHub y prepara cambios para revisión.",  desc_en:"An asynchronous coding agent that works on real tasks in GitHub repositories and prepares changes for review.",           cat:"CI/CD & code",                 icon:"✦", url:"https://jules.ai",         badge:"free" },
+    { id:71,  name:"PostHog",        desc_es:"Analítica de producto, session replay, feature flags y experimentos juntos.",                                  desc_en:"Product analytics, session replay, feature flags and experiments together.",                                              cat:"Analytics",                    icon:"✦", url:"https://posthog.com",      badge:"free" },
+    { id:72,  name:"Mixpanel",       desc_es:"Comprende el uso del producto a través de eventos, funnels, cohortes y retención.",                             desc_en:"Understand product usage through events, funnels, cohorts and retention.",                                                cat:"Analytics",                    icon:"✦", url:"https://mixpanel.com",     badge:"free" },
+    { id:73,  name:"Amplitude",      desc_es:"Analítica digital para journeys de usuario, comportamiento y experimentos de producto.",                        desc_en:"Digital analytics for user journeys, behavior and product experiments.",                                                  cat:"Analytics",                    icon:"✦", url:"https://amplitude.com",    badge:"free" },
+    { id:74,  name:"Google Analytics",desc_es:"Analítica de tráfico web y de apps ampliamente soportada.",                                                  desc_en:"Widely supported web and app traffic analytics from Google.",                                                             cat:"Analytics",                    icon:"✦", url:"https://analytics.google.com", badge:"free" },
+    { id:75,  name:"Cloudflare Web Analytics",desc_es:"Analíticas web privacy-first sin cookies ni datos personales, gratis para cualquier sitio.",          desc_en:"Privacy-first web analytics from Cloudflare: no cookies, no personal data, free for any site.",                           cat:"Analytics",                    icon:"✦", url:"https://cloudflare.com/web-analytics", badge:"free" },
+    { id:76,  name:"Microsoft Clarity",desc_es:"Heatmaps y grabaciones de sesión gratuitas para entender el comportamiento en tu web.",                      desc_en:"Free heatmaps and session recordings for understanding website behavior.",                                                cat:"Analytics",                    icon:"✦", url:"https://clarity.microsoft.com", badge:"free" },
+    { id:77,  name:"Axiom",          desc_es:"Almacena y explora datos de eventos y logs con consultas rápidas y dashboards.",                                desc_en:"Store and explore event data and logs with fast queries and dashboards.",                                                 cat:"Analytics",                    icon:"✦", url:"https://axiom.co",         badge:"free" },
+    { id:78,  name:"Pipedream",      desc_es:"Conecta APIs y ejecuta workflows event-driven con código bajo demanda.",                                       desc_en:"Connect APIs and run event-driven workflows with code when you need it.",                                                 cat:"APIs & automation",            icon:"✦", url:"https://pipedream.com",    badge:"free" },
+    { id:79,  name:"Beeceptor",      desc_es:"Crea endpoints mock instantáneos e inspecciona, transforma o proxy requests.",                                  desc_en:"Create instant mock endpoints and inspect, transform or proxy requests.",                                                 cat:"APIs & automation",            icon:"✦", url:"https://beeceptor.com",    badge:"free" },
+    { id:80,  name:"MockAPI",        desc_es:"Genera endpoints REST y datos de muestra realistas para prototipos.",                                          desc_en:"Generate REST endpoints and realistic sample data for prototypes.",                                                       cat:"APIs & automation",            icon:"✦", url:"https://mockapi.io",       badge:"free" },
+    { id:81,  name:"Abstract API",   desc_es:"Suite práctica de APIs para validación de IP, email, teléfono y más.",                                         desc_en:"A practical API suite for IP, email, phone and other validation tasks.",                                                  cat:"APIs & automation",            icon:"✦", url:"https://abstractapi.com",   badge:"free" },
+    { id:82,  name:"IPinfo",         desc_es:"Datos de direcciones IP para geolocalización, redes, privacidad y seguridad.",                                 desc_en:"IP address data for geolocation, networks, privacy and security use cases.",                                              cat:"APIs & automation",            icon:"✦", url:"https://ipinfo.io",        badge:"free" },
+    { id:83,  name:"JSONPlaceholder",desc_es:"API REST falsa y fiable para ejemplos, tests y prototipos rápidos.",                                           desc_en:"A dependable fake REST API for examples, tests and quick prototypes.",                                                    cat:"APIs & automation",            icon:"✦", url:"https://jsonplaceholder.typicode.com", badge:"nosignup" },
+    { id:84,  name:"Open-Meteo",     desc_es:"Pronósticos meteorológicos globales y datos históricos mediante API JSON gratuita sin API key.",                desc_en:"Global weather forecasts and historical data through a free JSON API with no API key.",                                   cat:"APIs & automation",            icon:"✦", url:"https://open-meteo.com",    badge:"nosignup" },
+    { id:85,  name:"OpenGraph.to",   desc_es:"Extrae tags Open Graph, Twitter Card y SEO de cualquier URL pública como JSON.",                               desc_en:"Scrape Open Graph, Twitter Card and SEO tags for any public URL as JSON.",                                                cat:"APIs & automation",            icon:"✦", url:"https://opengraph.to",     badge:"nosignup" },
+    { id:86,  name:"Hoppscotch",     desc_es:"Cliente API web rápido para REST, GraphQL y protocolos en tiempo real.",                                       desc_en:"A fast web API client for REST, GraphQL and realtime protocols.",                                                         cat:"APIs & automation",            icon:"✦", url:"https://hoppscotch.io",    badge:"free" },
+    { id:87,  name:"Canva",          desc_es:"Crea activos visuales rápidamente con plantillas y edición en el navegador.",                                   desc_en:"Create visual assets quickly with templates and browser-based editing.",                                                  cat:"Design & UI",                  icon:"✦", url:"https://canva.com",        badge:"free" },
+    { id:88,  name:"Excalidraw",     desc_es:"Lienzo dibujado a mano para diagramas y bocetos colaborativos.",                                               desc_en:"A delightful hand-drawn canvas for diagrams and collaborative sketches.",                                                 cat:"Design & UI",                  icon:"✦", url:"https://excalidraw.com",    badge:"nosignup" },
+    { id:89,  name:"Penpot",         desc_es:"Diseño de interfaz y prototipado open source con colaboración en tiempo real.",                                 desc_en:"Open-source interface design and prototyping with real-time collaboration.",                                             cat:"Design & UI",                  icon:"✦", url:"https://penpot.app",       badge:"free" },
+    { id:90,  name:"tldraw",         desc_es:"Lienzo infinito colaborativo rápido más SDK React para experiencias personalizadas.",                           desc_en:"A fast collaborative infinite canvas plus a React SDK for building custom canvas experiences.",                           cat:"Design & UI",                  icon:"✦", url:"https://tldraw.com",        badge:"nosignup" },
+    { id:91,  name:"Fontshare",      desc_es:"Colección creciente de fuentes profesionales gratuitas para uso personal y comercial.",                        desc_en:"A growing collection of professional fonts free for personal and commercial use.",                                       cat:"Team & productivity",          icon:"✦", url:"https://fontshare.com",     badge:"nosignup" },
+    { id:92,  name:"Stitch",         desc_es:"Convierte prompts, imágenes y wireframes en diseños UI, código frontend y Figma editable.",                    desc_en:"Turn text prompts, images and wireframes into UI designs, frontend code and editable Figma work.",                        cat:"Design & UI",                  icon:"✦", url:"https://stitch.labs.google", badge:"free" },
+    { id:93,  name:"GitGuardian",    desc_es:"Detecta secretos expuestos en código fuente y guía su remediación.",                                            desc_en:"Detect exposed secrets in source code and guide their remediation.",                                                     cat:"Security",                     icon:"✦", url:"https://gitguardian.com",   badge:"free" },
+    { id:94,  name:"Socket",         desc_es:"Protege las cadenas de suministro de JavaScript analizando el comportamiento de dependencias.",                 desc_en:"Protect JavaScript supply chains by analyzing dependency behavior.",                                                     cat:"Security",                     icon:"✦", url:"https://socket.dev",        badge:"free" },
+    { id:95,  name:"Mozilla Observatory",desc_es:"Escanea sitios web en busca de cabeceras de seguridad y prácticas de hardening.",                           desc_en:"Scan a website for security headers and common web hardening practices.",                                                cat:"Security",                     icon:"✦", url:"https://observatory.mozilla.org", badge:"nosignup" },
+    { id:96,  name:"Have I Been Pwned",desc_es:"Verifica cuentas y dominios contra filtraciones de datos conocidas mediante API.",                            desc_en:"Check accounts and domains against known data breaches through an API.",                                                 cat:"Security",                     icon:"✦", url:"https://haveibeenpwned.com", badge:"nosignup" },
+    { id:97,  name:"Notion",         desc_es:"Documentos conectados, wikis, bases de datos y gestión de proyectos ligera.",                                   desc_en:"Connected docs, wikis, databases and lightweight project management.",                                                   cat:"Team & productivity",          icon:"✦", url:"https://notion.so",         badge:"free" },
+    { id:98,  name:"Trello",         desc_es:"Tableros Kanban visuales para organizar proyectos y flujos de trabajo en equipo.",                              desc_en:"Visual Kanban boards for organizing projects and team workflows.",                                                       cat:"Team & productivity",          icon:"✦", url:"https://trello.com",        badge:"free" },
+    { id:99,  name:"Miro",           desc_es:"Pizarra colaborativa para workshops, diagramas y planificación remota.",                                       desc_en:"A collaborative whiteboard for workshops, diagrams and remote planning.",                                                cat:"Team & productivity",          icon:"✦", url:"https://miro.com",          badge:"free" },
+    { id:100, name:"ClickUp",        desc_es:"Tareas, docs, metas y vistas de proyecto en un espacio altamente configurable.",                                desc_en:"Tasks, docs, goals and project views in a highly configurable workspace.",                                               cat:"Team & productivity",          icon:"✦", url:"https://clickup.com",       badge:"free" },
+    { id:101, name:"Discord",        desc_es:"Espacios de texto, voz y video persistentes para comunidades de desarrolladores.",                              desc_en:"Persistent text, voice and video spaces for developer communities.",                                                     cat:"Team & productivity",          icon:"✦", url:"https://discord.com",       badge:"free" },
+    { id:102, name:"Slack",          desc_es:"Mensajería de equipo con canales, huddles y amplio ecosistema de integraciones.",                                desc_en:"Team messaging with channels, huddles and a large integration ecosystem.",                                               cat:"Team & productivity",          icon:"✦", url:"https://slack.com",         badge:"free" },
+    { id:103, name:"Sanity",         desc_es:"Espacio de trabajo de contenido personalizable con plataforma de contenido en tiempo real.",                    desc_en:"A customizable content workspace backed by a real-time content platform.",                                               cat:"Content & CMS",                icon:"✦", url:"https://sanity.io",         badge:"free" },
+    { id:104, name:"Contentful",     desc_es:"Infraestructura de contenido API-first con un editor maduro y ecosistema.",                                     desc_en:"API-first content infrastructure with a mature editor and ecosystem.",                                                   cat:"Content & CMS",                icon:"✦", url:"https://contentful.com",    badge:"free" },
+    { id:105, name:"Storyblok",      desc_es:"CMS headless con editor visual y modelo de contenido basado en componentes.",                                  desc_en:"Headless CMS with a visual editor and component-based content model.",                                                    cat:"Content & CMS",                icon:"✦", url:"https://storyblok.com",     badge:"free" },
+    { id:106, name:"Hygraph",        desc_es:"Plataforma de contenido nativa en GraphQL para contenido estructurado multi-fuente.",                            desc_en:"GraphQL-native content platform for structured, multi-source content.",                                                   cat:"Content & CMS",                icon:"✦", url:"https://hygraph.com",       badge:"free" },
+    { id:107, name:"DatoCMS",        desc_es:"CMS headless con entrega GraphQL y pipeline de imágenes integrado.",                                            desc_en:"Headless CMS with GraphQL delivery and a built-in image pipeline.",                                                      cat:"Content & CMS",                icon:"✦", url:"https://datocms.com",       badge:"free" },
+    { id:108, name:"Prismic",        desc_es:"CMS de construcción de páginas con slices reutilizables y previsualizaciones.",                                 desc_en:"Page-building CMS with reusable slices and visual previews for editors.",                                                cat:"Content & CMS",                icon:"✦", url:"https://prismic.io",        badge:"free" },
+    { id:109, name:"Uploadcare",     desc_es:"Subida de archivos, procesamiento de imágenes y entrega adaptativa para apps web.",                             desc_en:"File uploads, image processing and adaptive delivery for web apps.",                                                     cat:"Storage & media",              icon:"✦", url:"https://uploadcare.com",    badge:"free" },
+    { id:110, name:"ImageKit",       desc_es:"Optimización, transformación y entrega de imágenes y video en tiempo real.",                                    desc_en:"Real-time image and video optimization, transformation and delivery.",                                                    cat:"Storage & media",              icon:"✦", url:"https://imagekit.io",       badge:"free" },
+  ];
+
+  let activeCategory = null;
+  let searchQuery = '';
+  let lang = 'es';
+
+  const grid = document.getElementById('grid');
+  const pills = document.getElementById('pills');
+  const searchInput = document.getElementById('searchInput');
+  const themeToggle = document.getElementById('themeToggle');
+  const langToggle = document.getElementById('langToggle');
+  const visibleCount = document.getElementById('visibleCount');
+  const statTotal = document.getElementById('statTotal');
+  const statCategories = document.getElementById('statCategories');
+
+  function t(key) { return i18n[lang][key]; }
+
+  function getCategories(data) {
+    const map = {};
+    data.forEach(r => {
+      if (!map[r.cat]) map[r.cat] = { name: r.cat, count: 0 };
+      map[r.cat].count++;
+    });
+    return Object.values(map).sort((a, b) => b.count - a.count);
+  }
+
+  function filterData(data, category, query) {
+    return data.filter(r => {
+      if (category && r.cat !== category) return false;
+      if (query) {
+        const q = query.toLowerCase();
+        return r.name.toLowerCase().includes(q) || (lang === 'es' ? r.desc_es : r.desc_en).toLowerCase().includes(q) || r.cat.toLowerCase().includes(q);
+      }
+      return true;
+    });
+  }
+
+  function renderPills(categories) {
+    const allCount = resources.length;
+    let html = `<span class="pill ${activeCategory === null ? 'active' : ''}" data-cat="">${t('all')} <span class="count">${allCount}</span></span>`;
+    categories.forEach(c => {
+      const active = activeCategory === c.name;
+      html += `<span class="pill ${active ? 'active' : ''}" data-cat="${c.name}">${c.name} <span class="count">${c.count}</span></span>`;
+    });
+    pills.innerHTML = html;
+    pills.querySelectorAll('.pill').forEach(el => {
+      el.addEventListener('click', () => {
+        activeCategory = el.dataset.cat || null;
+        render();
+      });
+    });
+  }
+
+  function renderGrid(data) {
+    if (!data.length) {
+      grid.innerHTML = `<div class="empty-state"><div class="emoji">🔍</div><p>${t('empty')}</p></div>`;
+      return;
+    }
+    grid.innerHTML = data.map(r => {
+      const badgeKey = badgeKeys[r.badge];
+      const badgeLabel = badgeKey ? t(badgeKey) : '';
+      const desc = lang === 'es' ? r.desc_es : r.desc_en;
+      return `
+        <a class="card" href="${r.url}" target="_blank" rel="noopener">
+          <div class="card-icon">${r.icon}</div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>${r.name}</h3>
+              <span class="arrow">↗</span>
+            </div>
+            <p>${desc}</p>
+            <div class="card-tags">
+              <span class="tag">${r.cat}</span>
+              ${badgeLabel ? `<span class="badge ${r.badge}">${badgeLabel}</span>` : ''}
+            </div>
+          </div>
+        </a>
+      `;
+    }).join('');
+  }
+
+  function applyUI() {
+    document.documentElement.lang = lang;
+    document.getElementById('metaTitle').textContent = t('title');
+    document.getElementById('metaDesc').content = t('metaDesc');
+    document.title = t('title');
+    document.getElementById('heroSubtitle').textContent = t('subtitle');
+    document.getElementById('labelResources').textContent = t('resources');
+    document.getElementById('labelCategories').textContent = t('categories');
+    document.getElementById('labelUpdated').textContent = t('updated');
+    searchInput.placeholder = t('searchPlaceholder');
+    document.getElementById('labelFound').textContent = t('found');
+    document.getElementById('footerInspired').textContent = t('footerInspired');
+    langToggle.textContent = lang === 'es' ? 'ES' : 'EN';
+    langToggle.classList.toggle('active-lang', true);
+  }
+
+  function render() {
+    applyUI();
+    const filtered = filterData(resources, activeCategory, searchQuery);
+    renderGrid(filtered);
+    visibleCount.textContent = filtered.length;
+    statTotal.textContent = resources.length;
+    const cats = getCategories(resources);
+    statCategories.textContent = cats.length;
+    renderPills(cats);
+  }
+
+  searchInput.addEventListener('input', e => {
+    searchQuery = e.target.value;
+    render();
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    themeToggle.textContent = next === 'dark' ? '☾' : '☀';
+    localStorage.setItem('toolvault-theme', next);
+  }
+  themeToggle.addEventListener('click', toggleTheme);
+
+  function toggleLang() {
+    lang = lang === 'es' ? 'en' : 'es';
+    localStorage.setItem('toolvault-lang', lang);
+    render();
+  }
+  langToggle.addEventListener('click', toggleLang);
+
+  (function init() {
+    const savedTheme = localStorage.getItem('toolvault-theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeToggle.textContent = savedTheme === 'dark' ? '☾' : '☀';
+    }
+    const savedLang = localStorage.getItem('toolvault-lang');
+    if (savedLang) lang = savedLang;
+    render();
+  })();
+</script>
+</body>
+</html>
