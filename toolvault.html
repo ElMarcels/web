@@ -103,12 +103,49 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 95px 20px 0; }
 
     .hero {
-      padding: 52px 0 32px;
+      padding: 0 0 32px;
       text-align: center;
       position: relative;
+    }
+    .hero-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background: var(--bg);
+      padding: 10px 0;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .hero-fixed .hero-fixed-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .hero-fixed h1 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      animation: glitch 3s infinite;
+      animation-timing-function: steps(1);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .hero-fixed h1 .accent { color: var(--accent); }
+    .hero-fixed .search-wrap {
+      flex: 1;
+      max-width: 400px;
+      margin: 0;
     }
     .hero h1 {
       font-family: var(--font-display);
@@ -118,6 +155,15 @@
       line-height: 1.1;
       margin-bottom: 10px;
       text-transform: uppercase;
+    }
+    @keyframes glitch {
+      0%, 88%, 100% { text-shadow: none; transform: none; }
+      89% { text-shadow: -3px 0 #ff0040, 3px 0 #00e5ff; transform: translate(-1px, 0) skew(-0.5deg); }
+      90% { text-shadow: 3px 0 #ff0040, -3px 0 #00e5ff; transform: translate(1px, 0) skew(0.5deg); }
+      91% { text-shadow: -2px 0 #ff0040, 2px 0 #00e5ff; transform: translate(0, -1px) skew(0deg); }
+      92% { text-shadow: 2px 0 #ff0040, -2px 0 #00e5ff; transform: translate(0, 1px) skew(0deg); }
+      93% { text-shadow: -1px 0 #ff0040, 1px 0 #00e5ff; transform: translate(0, 0) skew(0.3deg); }
+      94% { text-shadow: 1px 0 #ff0040, -1px 0 #00e5ff; transform: translate(0, 0) skew(-0.3deg); }
     }
     .hero h1 .accent { color: var(--accent); }
     .hero .subtitle {
@@ -348,10 +394,14 @@
     .footer a:hover { color: var(--accent); }
 
     @media (max-width: 720px) {
+      .hero-fixed { padding: 8px 0; }
+      .hero-fixed h1 { font-size: 1.2rem; }
+      .hero-fixed .hero-fixed-inner { flex-wrap: wrap; justify-content: center; }
+      .hero-fixed .search-wrap { max-width: 100%; }
+      .container { padding: 100px 14px 0; }
       .hero h1 { font-size: 1.6rem; }
       .hero { padding: 32px 0 20px; }
       .stats { gap: 12px; font-size: 0.7rem; }
-      .container { padding: 0 14px; }
       .card { padding: 12px 14px; }
     }
     @media (max-width: 480px) {
@@ -361,18 +411,23 @@
 </head>
 <body>
 
+<div class="hero-fixed">
+  <div class="hero-fixed-inner">
+    <h1>Tool<span class="accent">Vault</span></h1>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Buscar por producto, categoría o uso…" autocomplete="off" />
+    </div>
+  </div>
+</div>
+
 <div class="container">
 
   <section class="hero">
-    <h1>Tool<span class="accent">Vault</span></h1>
     <p class="subtitle" id="heroSubtitle">Un directorio curado de productos con tiers gratuitos útiles para desarrolladores, creadores y pequeños equipos.</p>
     <div class="stats">
       <span><strong id="statTotal">0</strong> <span id="labelResources">recursos</span></span>
       <span><strong id="statCategories">0</strong> <span id="labelCategories">categorías</span></span>
       <span id="labelUpdated">Actualizado Jul 2026</span>
-    </div>
-    <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="Buscar por producto, categoría o uso…" autocomplete="off" />
     </div>
   </section>
 
