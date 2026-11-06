@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nombre del proyecto · ElMarcels</title>
+<link rel="icon" type="image/x-icon" href="../favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f0ed;--surface:#fffaf7;--fg:#26282c;--muted:#6d6663;--line:#e1d6d0;--accent:#c4621f;--accent-ink:#fff;--grid:rgba(38,40,44,.05);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --px:8px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#1f2125;--surface:#2a2c31;--fg:#f3ebe7;--muted:#a8a19d;--line:#383b41;--accent:#ee8f50;--accent-ink:#1f2125;--grid:rgba(255,255,255,.035);color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#1f2125;--surface:#2a2c31;--fg:#f3ebe7;--muted:#a8a19d;--line:#383b41;--accent:#ee8f50;--accent-ink:#1f2125;--grid:rgba(255,255,255,.035);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;color:var(--fg);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased;
+  background-color:var(--bg);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px}
+main{max-width:66rem;margin:0 auto;padding:0 1.5rem 3rem}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.block{clip-path:polygon(0 var(--px),var(--px) var(--px),var(--px) 0,calc(100% - var(--px)) 0,calc(100% - var(--px)) var(--px),100% var(--px),100% calc(100% - var(--px)),calc(100% - var(--px)) calc(100% - var(--px)),calc(100% - var(--px)) 100%,var(--px) 100%,var(--px) calc(100% - var(--px)),0 calc(100% - var(--px)))}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;font:500 1rem var(--display)}
+nav a:hover{color:var(--accent)}
+nav .back{color:var(--muted)}
+
+header.top{padding:clamp(1.5rem,5vw,3.5rem) 0 2rem}
+h1{font:800 clamp(2.75rem,9vw,6rem)/.95 var(--display);letter-spacing:-.04em;margin:0;max-width:14ch}
+.summary{font:500 clamp(1.2rem,2.6vw,1.6rem)/1.35 var(--display);max-width:36rem;margin:1.5rem 0 2rem}
+.cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{--px:6px;display:inline-block;padding:.85rem 1.5rem;font:500 1rem var(--display);background:var(--accent);color:var(--accent-ink);transition:transform .15s}
+.btn:hover{transform:translate(-2px,-2px)}
+.btn.alt{background:var(--surface);color:var(--fg)}
+.btn.alt:hover{color:var(--accent)}
+
+/* Sustituye .shot por <img> cuando tengas capturas */
+.shot{background:var(--surface);aspect-ratio:16/9;display:grid;place-items:center;color:var(--muted);text-align:center;padding:1rem;
+  background-image:repeating-conic-gradient(var(--line) 0 25%,transparent 0 50%);background-size:32px 32px}
+.shot span{background:var(--surface);padding:.4rem .9rem}
+img.shot{width:100%;height:auto;display:block;padding:0}
+
+.layout{display:grid;grid-template-columns:14rem 1fr;gap:3rem;padding-top:clamp(2.5rem,6vw,4rem)}
+aside dl{position:sticky;top:1.5rem;margin:0;display:grid;gap:1.25rem}
+aside dt{color:var(--muted);font-size:.9375rem}
+aside dd{margin:.1rem 0 0;font-weight:500}
+article{max-width:42rem}
+article section{margin-bottom:clamp(2.5rem,6vw,4rem)}
+h2{font:800 clamp(1.6rem,4vw,2.25rem)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 1rem}
+article p{margin:0 0 1rem}
+article ul{padding-left:1.25rem;margin:0 0 1rem}
+article li{margin-bottom:.4rem}
+article li::marker{color:var(--accent)}
+
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:0;padding:0;list-style:none}
+.chips li{--px:4px;background:var(--surface);padding:.45rem .9rem;font-weight:500;margin:0}
+
+.decisions{display:grid;gap:1rem}
+.decision{background:var(--surface);padding:1.5rem}
+.decision h3{font:800 1.25rem/1.2 var(--display);letter-spacing:-.02em;margin:0 0 .5rem}
+.decision p{margin:0;color:var(--muted)}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.gallery .shot{aspect-ratio:4/3}
+
+.next{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:2rem;padding-top:2rem;font:800 clamp(1.25rem,3vw,1.75rem)/1.2 var(--display);letter-spacing:-.02em}
+.next small{display:block;font:400 .9375rem var(--body);letter-spacing:0;color:var(--muted);margin-bottom:.25rem}
+.next a:hover{color:var(--accent)}
+.next .r{text-align:right;margin-left:auto}
+footer{margin-top:3rem;color:var(--muted);font-size:.9375rem}
+
+@media (max-width:48rem){
+  .layout{grid-template-columns:1fr;gap:2rem}
+  aside dl{position:static;grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+  <nav>
+    <a class="back" href="../portfolio_v2.html#proyectos">Volver a proyectos</a>
+    <a href="#">ElMarcels</a>
+  </nav>
+
+  <header class="top">
+    <h1>Nombre del proyecto</h1>
+    <p class="summary">Una frase que explique qué es y para quién sirve. Máximo dos líneas.</p>
+    <div class="cta">
+      <a class="btn block" href="#">Ver código</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside>
+      <dl>
+        <div><dt>Rol</dt><dd>FullStack, en solitario</dd></div>
+        <div><dt>Año</dt><dd>2026</dd></div>
+        <div><dt>Duración</dt><dd>3 meses</dd></div>
+        <div><dt>Estado</dt><dd>En producción</dd></div>
+      </dl>
+    </aside>
+
+    <article>
+      <section>
+        <h2>El problema</h2>
+        <p>Describe qué dolor o necesidad había antes del proyecto. Quién la sufría, con qué frecuencia y qué alternativas existían.</p>
+      </section>
+
+      <section>
+        <h2>La solución</h2>
+        <p>Explica qué construiste y cómo resuelve el problema. Empieza por lo que ve la persona usuaria y deja los detalles técnicos para más abajo.</p>
+        <ul>
+          <li>Funcionalidad principal uno</li>
+          <li>Funcionalidad principal dos</li>
+          <li>Funcionalidad principal tres</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Stack</h2>
+        <ul class="chips">
+          <li class="block">TypeScript</li><li class="block">Next.js</li><li class="block">Node.js</li>
+          <li class="block">PostgreSQL</li><li class="block">Docker</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Decisiones técnicas</h2>
+        <div class="decisions">
+          <div class="decision block"><h3>Decisión o reto uno</h3><p>Qué opciones tenías, cuál elegiste y por qué.</p></div>
+          <div class="decision block"><h3>Decisión o reto dos</h3><p>Qué salió mal o qué fue difícil, y cómo lo resolviste.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Resultados</h2>
+        <ul>
+          <li>Dato medible: usuarios, tiempo ahorrado, rendimiento o similar.</li>
+          <li>Otro dato que demuestre que funcionó.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Qué aprendí</h2>
+        <p>Una o dos frases honestas sobre lo que harías distinto la próxima vez.</p>
+      </section>
+    </article>
+  </div>
+
+  <footer>© 2026 ElMarcels</footer>
+</main>
+</body>
+</html>
